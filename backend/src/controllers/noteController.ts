@@ -11,7 +11,9 @@ import mongoose from "mongoose";
 //https://stackoverflow.com/questions/43729199/how-i-can-use-like-operator-on-mongoose
 //https://dev.to/itz_giddy/how-to-query-documents-in-mongodb-that-fall-within-a-specified-date-range-using-mongoose-and-node-524a
 //https://stackoverflow.com/questions/11973304/mongodb-mongoose-querying-at-a-specific-date
-
+/*-----------------------------------------------------------
+ * GET NOTES
+ ------------------------------------------------------------*/
 interface SearchQuery {
   page: string;
   size: string;
@@ -104,6 +106,10 @@ const getAllNotes: RequestHandler<
   });
 };
 
+/*-----------------------------------------------------------
+ * GET NOTE
+ ------------------------------------------------------------*/
+
 /**
  * @desc - Get note
  * @route - GET api/notes/:id
@@ -129,6 +135,11 @@ const getNoteById: RequestHandler = async (req, res) => {
     deadline: note.deadline,
   });
 };
+
+
+/*-----------------------------------------------------------
+ * CREATE NOTE
+ ------------------------------------------------------------*/
 
 interface CreateNoteBody {
   title?: string;
@@ -189,6 +200,10 @@ interface UpdateNoteBody {
   content?: string;
   deadline?: string;
 }
+
+/*-----------------------------------------------------------
+ * UPDATE NOTE
+ ------------------------------------------------------------*/
 
 /**
  * @desc - Update a note
@@ -255,6 +270,10 @@ const updateNote: RequestHandler<
     deadline: updatedNote.deadline,
   });
 };
+
+/*-----------------------------------------------------------
+ * DEL NOTE
+ ------------------------------------------------------------*/
 
 /**
  * @desc - Delete a note
