@@ -113,7 +113,7 @@ const registerUser: RequestHandler<
                 `,
   };
   //don't wait//they can resend if it fails
-  const response = await sendEmail(emailOptions);
+  sendEmail(emailOptions);
   // if (!response) {
   //   return res.status(400).json({ message: "Check details and try again" });
   // }
@@ -211,7 +211,7 @@ const resendVerifyEmail: RequestHandler = async (req, res) => {
                 `,
       };
       //don't wait//they can resend if it fails
-      const response = sendEmail(emailOptions);
+      sendEmail(emailOptions);
       // if (!response) {
       //   return res.status(400).json({ message: "Check details and try again" });
       // }
