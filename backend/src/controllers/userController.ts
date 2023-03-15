@@ -114,9 +114,6 @@ const registerUser: RequestHandler<
   };
   //don't wait//they can resend if it fails
   sendEmail(emailOptions);
-  // if (!response) {
-  //   return res.status(400).json({ message: "Check details and try again" });
-  // }
 
   ///save user
   const userObject = {
@@ -212,9 +209,6 @@ const resendVerifyEmail: RequestHandler = async (req, res) => {
       };
       //don't wait//they can resend if it fails
       sendEmail(emailOptions);
-      // if (!response) {
-      //   return res.status(400).json({ message: "Check details and try again" });
-      // }
 
       //update verify token
       foundUser.verifyEmailToken = verifyEmailToken;
