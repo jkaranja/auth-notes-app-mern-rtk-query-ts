@@ -39,8 +39,8 @@ const baseQueryWithReauth: BaseQueryFn<
 
   let result = await baseQuery(args, api, extraOptions);
 
-  // If you want, handle other status codes, too
-  if (result?.error?.status === 403) {
+  // If you want, handle other status codes//catch only 401 unauthorized// invalid access token
+  if (result?.error?.status === 401) {
     console.log("sending refresh token");
 
     // send refresh token to get new access token
@@ -48,6 +48,8 @@ const baseQueryWithReauth: BaseQueryFn<
 
     if (refreshResult?.data) {
       // store the new token
+      //dispatch to store is synchronous//so retry for the original query won't fire until the store gets the new token
+      //so headers will have the new token when the retry req is sent
       api.dispatch(
         setCredentials(
           (refreshResult.data as { accessToken: string }).accessToken

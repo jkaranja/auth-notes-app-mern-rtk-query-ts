@@ -10,6 +10,8 @@ import multer from "multer";
 
 //global configs
 
+//NOTE//a/c --> github
+
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API_KEY,

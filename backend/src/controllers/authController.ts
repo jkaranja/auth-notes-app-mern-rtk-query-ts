@@ -136,7 +136,7 @@ interface VerifyEmailParams {
 
 /**
  * @desc - verify
- * @route - GET /auth/verify/:verifyToken
+ * @route - POST /auth/verify/:verifyToken
  * @access - Public
  */
 
@@ -292,7 +292,7 @@ const resetPassword: RequestHandler = async (req, res) => {
 const refresh: RequestHandler = (req, res) => {
   const cookies = req.cookies;
 
-  if (!cookies?.jwt) return res.status(401).json({ message: "Unauthorized" });
+  if (!cookies?.jwt) return res.status(403).json({ message: "Forbidden" });
 
   const refreshToken: string = cookies.jwt; //cookies.jwt is of any type//must be converted to string for err & decoded types to be inferred
   //else you must pass type: err: VerifyErrors | null,  decoded: JwtPayload | string | undefined
@@ -307,7 +307,7 @@ const refresh: RequestHandler = (req, res) => {
         (<{ id: string }>decoded).id
       ).exec();
 
-      if (!foundUser) return res.status(401).json({ message: "Unauthorized" });
+      if (!foundUser) return res.status(403).json({ message: "Forbidden" });
 
       const accessToken = jwt.sign(
         {

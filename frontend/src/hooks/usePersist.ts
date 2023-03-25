@@ -11,6 +11,6 @@ const usePersist = () => {
     localStorage.setItem("persist", JSON.stringify(persist));
   }, [persist]);
 
-  return [persist, setPersist];
+  return [persist, setPersist] as const;//infer a tuple instead of (typeof persist | typeof setPersist)[]
 };
 export default usePersist;

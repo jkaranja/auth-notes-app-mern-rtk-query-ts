@@ -27,18 +27,17 @@ const VerifyingEmail = () => {
   const [confirmEmail, { data, error, isLoading, isError, isSuccess }] =
     useConfirmEmailMutation();
 
+  type TParams = { token: string };
   const { token } = useParams();
 
   useEffect(() => {
     if (isSuccess || isError || isLoading) return;
 
     const confirm = async () => {
-      await confirmEmail(token);
+      await confirmEmail(token!);
     };
     confirm();
   }, []);
-
-  console.log(isLoading, isError, isSuccess);
 
   return (
     <Box sx={{ display: "flex" }} justifyContent="center">
@@ -68,7 +67,7 @@ const VerifyingEmail = () => {
         <CardContent>
           <Typography gutterBottom paragraph mb={5} align="center">
             {error || data?.message}
-            {isLoading && "Loading..."}
+            {(isLoading as any) && "Loading..."}
           </Typography>
 
           {isSuccess && (

@@ -29,6 +29,7 @@ app.use(logger);
 //parse data/cookie
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+/* Parse cookie header and populate req.cookies */
 app.use(cookieParser());
 //allow cross origin requests//other origins to req our api//leave black to allow all
 //corsOptions= {

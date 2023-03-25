@@ -20,7 +20,7 @@ const RequireAuth = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   //set by oath success redirect//isAuthenticated = is a string since it is sent as query string
   const isAuthenticated = searchParams.get("authenticated");
-
+//or use skipToken instead of mutation with GET mtd
   const [refresh, { isUninitialized, isLoading, isSuccess, isError, error }] =
     useRefreshMutation();
 

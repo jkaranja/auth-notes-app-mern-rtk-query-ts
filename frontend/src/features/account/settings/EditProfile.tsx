@@ -45,12 +45,11 @@ const EditProfile = ({ user }: EditProfileProps) => {
   };
   //end of dialog
 
-
-   type EditProfileInputs = Record<string, string> & {
-     username: string;
-     email: string;
-     phoneNumber: string;
-   };
+  type EditProfileInputs = Record<string, string> & {
+    username: string;
+    email: string;
+    phoneNumber: string;
+  };
   //a/c hook
   const {
     register,
@@ -70,7 +69,7 @@ const EditProfile = ({ user }: EditProfileProps) => {
     const fileType = ["image/jpeg", "image/png", "image/gif"];
     setPicError("");
 
-    if (convertBytesToMB((e.target?.files as FileList)[0]?.size || 0) > 5) {
+    if (convertBytesToMB(e.target?.files?.[0]?.size || 0) > 5) {
       setPicError("File must be less than or equal to 5mb in size");
       return;
     }
@@ -78,7 +77,7 @@ const EditProfile = ({ user }: EditProfileProps) => {
     //   setPicError("Please Select an Image");
     //   return;
     // }
-    setSelectedPic((e.target?.files as FileList)[0]);
+    setSelectedPic(e.target?.files?.[0]!);
   };
 
   /**--------------------------------
@@ -111,6 +110,12 @@ const EditProfile = ({ user }: EditProfileProps) => {
 
     return () => URL.revokeObjectURL(objectUrl);
   }, [selectedPic]);
+
+  //reset profile pic to user.profileUrl
+  const handlePicReset = () => {
+    setPicError("");
+    setProfileUrl(user?.profileUrl!);
+  };
 
   //set defaults
   useEffect(() => {
@@ -168,10 +173,7 @@ const EditProfile = ({ user }: EditProfileProps) => {
                   />
                   Upload new photo
                 </Button>
-                <Button
-                  color="secondary"
-                  onClick={() => setProfileUrl(user?.profileUrl!)}
-                >
+                <Button color="secondary" onClick={handlePicReset}>
                   Reset
                 </Button>
               </Typography>
@@ -262,6 +264,7 @@ const EditProfile = ({ user }: EditProfileProps) => {
             color="secondary"
             variant="contained"
             disableElevation
+            disabled={Boolean(picError)}
           >
             Save changes
           </Button>
