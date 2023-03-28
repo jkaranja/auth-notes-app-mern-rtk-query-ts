@@ -110,7 +110,7 @@ function ChangePwd({ user }: ChangePwdProps) {
 
   return (
     <Box component={Paper} p={3}>
-      <ConfirmPwd {...dialogProps} />
+      {openD && <ConfirmPwd {...dialogProps} />}
       <Typography variant="h6" gutterBottom mb={3}>
         Change Password
       </Typography>

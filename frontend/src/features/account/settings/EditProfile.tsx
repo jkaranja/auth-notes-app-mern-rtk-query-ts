@@ -146,7 +146,7 @@ const EditProfile = ({ user }: EditProfileProps) => {
 
   return (
     <Box component={Paper} p={3}>
-      <ConfirmPwd {...dialogProps} />
+      {openD && <ConfirmPwd {...dialogProps} />}
       <Typography variant="h6" gutterBottom mb={3}>
         Account
       </Typography>

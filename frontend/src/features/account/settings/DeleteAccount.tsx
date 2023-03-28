@@ -68,7 +68,7 @@ const DeleteAccount = ({ user }: DeleteAccountProps) => {
 
   return (
     <Box component={Paper} p={3} mt={3}>
-      <ConfirmPwd  {...dialogProps} />
+      {openD && <ConfirmPwd  {...dialogProps} />}
       <Typography variant="h6">Delete account</Typography>
       <Typography variant="caption" gutterBottom>
         <FormControlLabel

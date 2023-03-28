@@ -319,7 +319,7 @@ const NoteList = () => {
             >
               Filter
             </Button>
-            <NoteFilter {...dialogProps} />
+            {openD && <NoteFilter {...dialogProps} />}
           </Grid>
         </Grid>
 
